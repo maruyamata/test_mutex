@@ -1,18 +1,12 @@
 #include <stdio.h>
 #include <thread>
-#include <mutex>
+#include "MutexVariable.h"
 
 // variable
-int sum = 0;
-std::mutex sum_mutex;
+MutexVariable<uint32_t> data;
 
 // function
-void add_count()
-{
-    std::lock_guard<std::mutex> lock(sum_mutex);
-    sum++;
-}
-
+void add_count() { data.add(1); }
 void work()
 {
     for (int i = 0; i < 100000; ++i) {
@@ -33,7 +27,7 @@ int main(void)
     th_B.join();
 
     printf("work_end \n");
-    printf("result %d \n", sum);
+    printf("result %d \n", data.getValue());
 
     return 0;
 }
