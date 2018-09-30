@@ -5,7 +5,7 @@ mutexの使い方を確認するために書いたサンプルコードです。
 ```
 > ./build.sh
 > cd build
-> ./test
+> ./test_mutex
 ```
 
 
